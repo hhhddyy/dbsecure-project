@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <title>{% block title %}system log{% endblock %}</title>
+        {% block styles %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' ) }}">
+        {% endblock %}
+    {% endblock %}
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">System Alarm and Log</a></li>
+    </ul>
+</nav>
+
+<main>
+
+        <div class="alert">
+            <h4>{{ message.task }}</h4>
+            <img src="{{ url_for('static', filename=message.content ) }}" alt="#" style="width: 330px;min-height: 20px;max-height: auto;">
+
+
+            {% for option in range(message.options|length) %}
+            <form action="/log/{{message.change_secure[option]}}*{{message.change_us[option]}}"><button style="color:blue">{{message.options[option]}}</button></form>
+            {% endfor %}
+        </div>
+</main>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

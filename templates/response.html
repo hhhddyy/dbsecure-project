@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% block head %}
+        <meta charset="utf-8">
+        <title>{% block title %}response{% endblock %}</title>
+        {% block styles %}
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css' ) }}">
+        {% endblock %}
+    {% endblock %}
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">Quit the game</a></li>
+    </ul>
+</nav>
+
+<main>
+
+        <div class="alert">
+            <h4>{{ message.task }}</h4>
+            <img src="{{ url_for('static', filename=message.content ) }}" alt="#" style="width: 400px;min-height: 120px;max-height: auto;">
+
+
+            {% for option in range(message.options|length) %}
+            {% if option == message.answer %}
+            <form action="/response/success"><button style="color:blue">{{message.options[option]}}</button></form>
+            {% else %}
+            <form action="/response/fail"><button style="color:blue">{{message.options[option]}}</button></form>
+            {% endif %}
+            {% endfor %}
+        </div>
+</main>
+
+{% block scripts %}{% endblock %}
+</body>
+</html>

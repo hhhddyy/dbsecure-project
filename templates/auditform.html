@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Select the behaviors you want to audit</h2>
+
+<form method="post">
+
+    {{ form.csrf_token }}
+
+    {{ form.choices}}<br>
+
+    {{ form.submit }}<br>
+</form>
+{% endblock %}

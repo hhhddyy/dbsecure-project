@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>set the user privilege</h2>
+
+<form method="post">
+
+    {{ form.csrf_token }}
+
+    {{ form.choices}}<br>
+
+    {{ form.submit }}<br>
+</form>
+{% endblock %}

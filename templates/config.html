@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="{{ url_for('static', filename='config.css' ) }}">
+</head>
+<!-- Contenedor -->
+<div class="pricing-wrapper clearfix">
+<!-- Titulo -->
+<h1 class="pricing-table-title">{{type}}</h1>
+    <div class="pricing-table-title">&#9830Database security:{{score.db_score}}  &#9830User satisfaction:{{score.user_score}}   &#9830Investigator satisfaction:{{score.invest_score}}
+    &#9830budget:{{score.budget}}</div>
+{% for key,table in config.items() %}
+<div class="pricing-table">
+
+<h3 class="pricing-title">{{table.name}}</h3>
+<div class="price">Oracle<sup>{{table.version}}</sup></div>
+<ul class="table-list">
+<li>{{table.server}}</li>
+<li>Usage<span>{{table.usage}}</span></li>
+    <li>cpu<span>{{table.cpu}}</span></li>
+</ul>
+<div class="table-buy">
+
+    <form action="/handel/audit/{{key}}/{{type}}"><button class="pricing-action">Add audit process </button></form>
+    <form action="/handel/encrypt/{{key}}/{{type}}"> <button class="pricing-action">Modify encryption method</button></form>
+    <form action="/handel/mask/{{key}}/{{type}}"> <button class="pricing-action">Add data Masking and redaction rules</button></form>
+    <form action="/handel/query/{{key}}/{{type}}"> <button class="pricing-action">Add query level access</button></form>
+    <form action="/handel/backup/{{key}}/{{type}}"><button class="pricing-action">Back Up</button></form>
+
+</div>
+
+</div>
+    {% endfor %}
+
+
+</div>
+</div>
+
+
+</html>
